@@ -15,6 +15,7 @@
 		E86E396519EBF2EB00AEFDE0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E86E396419EBF2EB00AEFDE0 /* Images.xcassets */; };
 		E86E396819EBF2EB00AEFDE0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86E396619EBF2EB00AEFDE0 /* LaunchScreen.xib */; };
 		E86E397419EBF2EB00AEFDE0 /* Airports_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E86E397319EBF2EB00AEFDE0 /* Airports_iOSTests.m */; };
+		E86E397E19EBFE5900AEFDE0 /* New Delhi Map.gif in Resources */ = {isa = PBXBuildFile; fileRef = E86E397D19EBFE5900AEFDE0 /* New Delhi Map.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		E86E396D19EBF2EB00AEFDE0 /* Airports-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Airports-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86E397219EBF2EB00AEFDE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E86E397319EBF2EB00AEFDE0 /* Airports_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Airports_iOSTests.m; sourceTree = "<group>"; };
+		E86E397D19EBFE5900AEFDE0 /* New Delhi Map.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "New Delhi Map.gif"; path = "../../../Downloads/New Delhi Map.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		E86E395319EBF2EB00AEFDE0 /* Airports-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E86E397D19EBFE5900AEFDE0 /* New Delhi Map.gif */,
 				E86E395819EBF2EB00AEFDE0 /* AppDelegate.h */,
 				E86E395919EBF2EB00AEFDE0 /* AppDelegate.m */,
 				E86E395B19EBF2EB00AEFDE0 /* MasterViewController.h */,
@@ -207,6 +210,7 @@
 				E86E396319EBF2EB00AEFDE0 /* Main.storyboard in Resources */,
 				E86E396819EBF2EB00AEFDE0 /* LaunchScreen.xib in Resources */,
 				E86E396519EBF2EB00AEFDE0 /* Images.xcassets in Resources */,
+				E86E397E19EBFE5900AEFDE0 /* New Delhi Map.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
