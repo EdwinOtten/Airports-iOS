@@ -33,30 +33,36 @@
 
 
 - (void) setAirport:(Airport *)object {
-    self.navigationItem.title = airport.name;
     airport = object;
+    
+    self.navigationItem.title = airport.name;
     
     if (!self.cellObjects) {
         self.cellObjects = [[NSMutableArray alloc] init];
     }
     
-    NSArray *ident = @[@"ident",airport.ident];
-    NSArray *type = @[@"type",airport.type];
-    NSArray *name = @[@"name",airport.name];
-    NSArray *elevation_ft = @[@"elevation_ft",airport.elevation_ft];
-    NSArray *continent = @[@"continent",airport.continent];
-    NSArray *iso_country = @[@"iso_country",airport.iso_country];
-    NSArray *iso_region = @[@"iso_region",airport.iso_region];
-    NSArray *municipality = @[@"municipality",airport.municipality];
-    NSArray *scheduled_service = @[@"scheduled_service",airport.scheduled_service];
-    NSArray *gps_code = @[@"gps_code",airport.gps_code];
+    NSArray *Id = @[@"ID", [NSString stringWithFormat: @"%ld", (long)airport.id]];
+    NSArray *ident = @[@"Identifier",airport.ident];
+    NSArray *type = @[@"Type",airport.type];
+    NSArray *name = @[@"Name",airport.name];
+    
+    NSArray *latitude_deg = @[@"Lengtegraad", [NSString stringWithFormat:@"%f", airport.latitude_deg] ];
+    NSArray *longitude_deg = @[@"Breedtegraad", [NSString stringWithFormat:@"%f", airport.longitude_deg] ];
+    
+    NSArray *elevation_ft = @[@"Hoogte in ft",airport.elevation_ft];
+    NSArray *continent = @[@"Continent",airport.continent];
+    NSArray *iso_country = @[@"ISO land",airport.iso_country];
+    NSArray *iso_region = @[@"ISO regio",airport.iso_region];
+    NSArray *municipality = @[@"Gemeente",airport.municipality];
+    NSArray *scheduled_service = @[@"Geplande werkzaamheden",airport.scheduled_service];
+    NSArray *gps_code = @[@"GPS code",airport.gps_code];
     NSArray *iata_code = @[@"iata_code",airport.iata_code];
     NSArray *local_code = @[@"local_code",airport.local_code];
-    NSArray *home_link = @[@"home_link",airport.home_link];
-    NSArray *wikipedia_link = @[@"wikipedia_link",airport.wikipedia_link];
-    NSArray *keywords = @[@"keywords",airport.keywords];
+    NSArray *home_link = @[@"Website",airport.home_link];
+    NSArray *wikipedia_link = @[@"Wikipedia",airport.wikipedia_link];
+    NSArray *keywords = @[@"Sleutelwoorden",airport.keywords];
     
-    NSArray *data = @[ident,type,name,elevation_ft,continent,iso_country,iso_region,municipality,scheduled_service,gps_code,iata_code,local_code,home_link,wikipedia_link,keywords];
+    NSArray *data = @[Id,ident,type,name,latitude_deg,longitude_deg,elevation_ft,continent,iso_country,iso_region,municipality,scheduled_service,gps_code,iata_code,local_code,home_link,wikipedia_link,keywords];
     
     [self.cellObjects addObjectsFromArray:data];
 

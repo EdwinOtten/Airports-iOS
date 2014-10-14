@@ -8,7 +8,7 @@
 @synthesize elevation_ft;
 @synthesize continent;
 @synthesize iso_country;
-@synthesize iso_region; //Bensalem
+@synthesize iso_region;
 @synthesize municipality;
 @synthesize scheduled_service;
 @synthesize gps_code;

@@ -25,18 +25,16 @@
             NSLog(@"Error while creating update statement. '%s'", sqlite3_errmsg(db));
         }
         
-        //
-        int i = 0;
-        int max = 40;
-        while (sqlite3_step(sqlStatement)==SQLITE_ROW && i<max) {
+
+        while (sqlite3_step(sqlStatement)==SQLITE_ROW) {
             Airport *myAirport = [[Airport alloc]init];
             
-            myAirport.id =      sqlite3_column_int(sqlStatement, 0);
+            myAirport.id =                  sqlite3_column_int(sqlStatement, 0);
             myAirport.ident =               [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 1)];
             myAirport.type =                [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 2)];
             myAirport.name =                [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 3)];
-//            myAirport.latitude_deg =        sqlite3_column_double(sqlStatement, 4);
-//            myAirport.longitude_deg =       sqlite3_column_double(sqlStatement, 5);
+            myAirport.latitude_deg =        sqlite3_column_double(sqlStatement, 4);
+            myAirport.longitude_deg =       sqlite3_column_double(sqlStatement, 5);
             myAirport.elevation_ft =        [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 6)];
             myAirport.continent =           [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 7)];
             myAirport.iso_country =         [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 8)];
@@ -51,7 +49,6 @@
             myAirport.keywords =            [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 17)];
 
             [wineArray addObject:myAirport];
-            i++;
         }
     }
     @catch (NSException *exception) {
