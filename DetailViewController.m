@@ -10,7 +10,7 @@
 #import "Airport.h"
 
 @interface DetailViewController ()
-@property NSMutableArray *objects;
+@property NSMutableArray *cellObjects;
 
 @end
 
@@ -36,25 +36,29 @@
     self.navigationItem.title = airport.name;
     airport = object;
     
-    if (!self.objects) {
-        self.objects = [[NSMutableArray alloc] init];
+    if (!self.cellObjects) {
+        self.cellObjects = [[NSMutableArray alloc] init];
     }
     
-    [self.objects insertObject:airport.ident atIndex:0];
-    [self.objects insertObject:airport.type atIndex:1];
-    [self.objects insertObject:airport.name atIndex:2];
-    [self.objects insertObject:airport.elevation_ft atIndex:3];
-    [self.objects insertObject:airport.continent atIndex:4];
-    [self.objects insertObject:airport.iso_country atIndex:5];
-    [self.objects insertObject:airport.iso_region atIndex:6];
-    [self.objects insertObject:airport.municipality atIndex:7];
-    [self.objects insertObject:airport.scheduled_service atIndex:8];
-    [self.objects insertObject:airport.gps_code atIndex:9];
-    [self.objects insertObject:airport.iata_code atIndex:10];
-    [self.objects insertObject:airport.local_code atIndex:11];
-    [self.objects insertObject:airport.home_link atIndex:12];
-    [self.objects insertObject:airport.wikipedia_link atIndex:13];
-    [self.objects insertObject:airport.keywords atIndex:14];
+    NSArray *ident = @[@"ident",airport.ident];
+    NSArray *type = @[@"type",airport.type];
+    NSArray *name = @[@"name",airport.name];
+    NSArray *elevation_ft = @[@"elevation_ft",airport.elevation_ft];
+    NSArray *continent = @[@"continent",airport.continent];
+    NSArray *iso_country = @[@"iso_country",airport.iso_country];
+    NSArray *iso_region = @[@"iso_region",airport.iso_region];
+    NSArray *municipality = @[@"municipality",airport.municipality];
+    NSArray *scheduled_service = @[@"scheduled_service",airport.scheduled_service];
+    NSArray *gps_code = @[@"gps_code",airport.gps_code];
+    NSArray *iata_code = @[@"iata_code",airport.iata_code];
+    NSArray *local_code = @[@"local_code",airport.local_code];
+    NSArray *home_link = @[@"home_link",airport.home_link];
+    NSArray *wikipedia_link = @[@"wikipedia_link",airport.wikipedia_link];
+    NSArray *keywords = @[@"keywords",airport.keywords];
+    
+    NSArray *data = @[ident,type,name,elevation_ft,continent,iso_country,iso_region,municipality,scheduled_service,gps_code,iata_code,local_code,home_link,wikipedia_link,keywords];
+    
+    [self.cellObjects addObjectsFromArray:data];
 
 }
 
@@ -65,25 +69,17 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objects.count;
+    return self.cellObjects.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AirportDetailCell" forIndexPath:indexPath];
     
-    NSDate *object = self.objects[indexPath.row];
-    cell.textLabel.text = [object description];
-    cell.detailTextLabel.text = [object description];
+    NSArray *row = self.cellObjects[indexPath.row];
+    cell.textLabel.text = row[0];
+    cell.detailTextLabel.text = row[1];
     return cell;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView addCell:(NSMutableArray *)strings {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AirportDetailCell" forIndexPath:0];
-    cell.textLabel.text = strings[0];
-    cell.detailTextLabel.text = strings[1];
-    return cell;
-}
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return NO;

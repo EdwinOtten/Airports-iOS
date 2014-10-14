@@ -11,6 +11,7 @@
 
 @interface DetailViewController : UITableViewController {
     Airport *airport;
+    NSMutableDictionary *airportData;
 }
 - (void) setAirport:Airport;
 @end
