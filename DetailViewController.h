@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Airport.h"
 
-@interface DetailViewController : UITableViewController
-
+@interface DetailViewController : UITableViewController {
+    Airport *airport;
+}
+- (void) setAirport:Airport;
 @end

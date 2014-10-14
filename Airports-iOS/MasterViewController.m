@@ -8,6 +8,8 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "AirportList.h"
+#import "Airport.h"
 
 @interface MasterViewController ()
 
@@ -24,23 +26,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    
+    AirportList *airportList = [AirportList new];
+    airports = [airportList getMyAirports];
+    
+    for (Airport *airport in airports) {
+        if (!self.objects) {
+            self.objects = [[NSMutableArray alloc] init];
+        }
+        [self.objects insertObject:airport.name atIndex:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)insertNewObject:(id)sender {
-    if (!self.objects) {
-        self.objects = [[NSMutableArray alloc] init];
-    }
-    [self.objects insertObject:@"Dit is een vluchthaven" atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Segues
@@ -52,11 +55,11 @@
     {
         // Get reference to the destination view controller
         DetailViewController *vc = [segue destinationViewController];
-        
-        // Pass any objects to the view controller here, like...
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSString *object = self.objects[indexPath.row];
-        [vc setTitle:object];
+        NSInteger rowcount = [self.tableView numberOfRowsInSection:0];
+        NSInteger selected = indexPath.row + 1;
+        Airport *airport = airports[rowcount - selected];
+        [vc setAirport:airport];
     }
 }
 #pragma mark - Table View
@@ -79,16 +82,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
+    return NO;
 }
 
 @end

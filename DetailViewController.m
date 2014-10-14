@@ -7,8 +7,10 @@
 //
 
 #import "DetailViewController.h"
+#import "Airport.h"
 
 @interface DetailViewController ()
+@property NSMutableArray *objects;
 
 @end
 
@@ -29,76 +31,62 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+
+- (void) setAirport:(Airport *)object {
+    self.navigationItem.title = airport.name;
+    airport = object;
+    
+    if (!self.objects) {
+        self.objects = [[NSMutableArray alloc] init];
+    }
+    
+    [self.objects insertObject:airport.ident atIndex:0];
+    [self.objects insertObject:airport.type atIndex:1];
+    [self.objects insertObject:airport.name atIndex:2];
+    [self.objects insertObject:airport.elevation_ft atIndex:3];
+    [self.objects insertObject:airport.continent atIndex:4];
+    [self.objects insertObject:airport.iso_country atIndex:5];
+    [self.objects insertObject:airport.iso_region atIndex:6];
+    [self.objects insertObject:airport.municipality atIndex:7];
+    [self.objects insertObject:airport.scheduled_service atIndex:8];
+    [self.objects insertObject:airport.gps_code atIndex:9];
+    [self.objects insertObject:airport.iata_code atIndex:10];
+    [self.objects insertObject:airport.local_code atIndex:11];
+    [self.objects insertObject:airport.home_link atIndex:12];
+    [self.objects insertObject:airport.wikipedia_link atIndex:13];
+    [self.objects insertObject:airport.keywords atIndex:14];
+
+}
+
+#pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return self.objects.count;
 }
 
-- (void) setTitle:(NSString *)newTitle {
-    self.navigationItem.title = newTitle;
-}
-
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AirportDetailCell" forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    NSDate *object = self.objects[indexPath.row];
+    cell.textLabel.text = [object description];
+    cell.detailTextLabel.text = [object description];
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
+- (UITableViewCell *)tableView:(UITableView *)tableView addCell:(NSMutableArray *)strings {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AirportDetailCell" forIndexPath:0];
+    cell.textLabel.text = strings[0];
+    cell.detailTextLabel.text = strings[1];
+    return cell;
+}
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

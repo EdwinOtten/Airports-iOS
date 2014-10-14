@@ -16,6 +16,11 @@
 		E86E397419EBF2EB00AEFDE0 /* Airports_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E86E397319EBF2EB00AEFDE0 /* Airports_iOSTests.m */; };
 		E86E397E19EBFE5900AEFDE0 /* New Delhi Map.gif in Resources */ = {isa = PBXBuildFile; fileRef = E86E397D19EBFE5900AEFDE0 /* New Delhi Map.gif */; };
 		E8F33A9819ED033D005530D2 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F33A9719ED033D005530D2 /* DetailViewController.m */; };
+		E8F33A9B19ED0C35005530D2 /* Airport.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F33A9A19ED0C35005530D2 /* Airport.m */; };
+		E8F33A9E19ED0C76005530D2 /* TemplateIcon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F33A9D19ED0C76005530D2 /* TemplateIcon2x.png */; };
+		E8F33AA119ED0CB3005530D2 /* AirportList.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F33AA019ED0CB3005530D2 /* AirportList.m */; };
+		E8F33AA419ED1954005530D2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F33AA319ED1954005530D2 /* libsqlite3.dylib */; };
+		E8F33AAA19ED29D9005530D2 /* airports2.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E8F33AA919ED29D9005530D2 /* airports2.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +50,13 @@
 		E86E397D19EBFE5900AEFDE0 /* New Delhi Map.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "New Delhi Map.gif"; path = "../../../Downloads/New Delhi Map.gif"; sourceTree = "<group>"; };
 		E8F33A9619ED033D005530D2 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
 		E8F33A9719ED033D005530D2 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
+		E8F33A9A19ED0C35005530D2 /* Airport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Airport.m; path = ../Airport.m; sourceTree = "<group>"; };
+		E8F33A9C19ED0C76005530D2 /* Airport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Airport.h; sourceTree = "<group>"; };
+		E8F33A9D19ED0C76005530D2 /* TemplateIcon2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TemplateIcon2x.png; sourceTree = "<group>"; };
+		E8F33AA019ED0CB3005530D2 /* AirportList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirportList.m; sourceTree = "<group>"; };
+		E8F33AA219ED0D20005530D2 /* AirportList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirportList.h; sourceTree = "<group>"; };
+		E8F33AA319ED1954005530D2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		E8F33AA919ED29D9005530D2 /* airports2.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = airports2.sqlite; path = ../../Downloads/airports2.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F33AA419ED1954005530D2 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +81,8 @@
 		E86E394819EBF2EB00AEFDE0 = {
 			isa = PBXGroup;
 			children = (
+				E8F33AA319ED1954005530D2 /* libsqlite3.dylib */,
+				E8F33AA919ED29D9005530D2 /* airports2.sqlite */,
 				E86E395319EBF2EB00AEFDE0 /* Airports-iOS */,
 				E86E397019EBF2EB00AEFDE0 /* Airports-iOSTests */,
 				E86E395219EBF2EB00AEFDE0 /* Products */,
@@ -86,6 +101,10 @@
 		E86E395319EBF2EB00AEFDE0 /* Airports-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E8F33AA219ED0D20005530D2 /* AirportList.h */,
+				E8F33AA019ED0CB3005530D2 /* AirportList.m */,
+				E8F33A9A19ED0C35005530D2 /* Airport.m */,
+				E8F33A9C19ED0C76005530D2 /* Airport.h */,
 				E8F33A9619ED033D005530D2 /* DetailViewController.h */,
 				E8F33A9719ED033D005530D2 /* DetailViewController.m */,
 				E86E397D19EBFE5900AEFDE0 /* New Delhi Map.gif */,
@@ -97,6 +116,7 @@
 				E86E396419EBF2EB00AEFDE0 /* Images.xcassets */,
 				E86E396619EBF2EB00AEFDE0 /* LaunchScreen.xib */,
 				E86E395419EBF2EB00AEFDE0 /* Supporting Files */,
+				E8F33A9D19ED0C76005530D2 /* TemplateIcon2x.png */,
 			);
 			path = "Airports-iOS";
 			sourceTree = "<group>";
@@ -207,7 +227,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F33A9E19ED0C76005530D2 /* TemplateIcon2x.png in Resources */,
 				E86E396319EBF2EB00AEFDE0 /* Main.storyboard in Resources */,
+				E8F33AAA19ED29D9005530D2 /* airports2.sqlite in Resources */,
 				E86E396819EBF2EB00AEFDE0 /* LaunchScreen.xib in Resources */,
 				E86E396519EBF2EB00AEFDE0 /* Images.xcassets in Resources */,
 				E86E397E19EBFE5900AEFDE0 /* New Delhi Map.gif in Resources */,
@@ -229,7 +251,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E86E395A19EBF2EB00AEFDE0 /* AppDelegate.m in Sources */,
+				E8F33A9B19ED0C35005530D2 /* Airport.m in Sources */,
 				E86E395D19EBF2EB00AEFDE0 /* MasterViewController.m in Sources */,
+				E8F33AA119ED0CB3005530D2 /* AirportList.m in Sources */,
 				E86E395719EBF2EB00AEFDE0 /* main.m in Sources */,
 				E8F33A9819ED033D005530D2 /* DetailViewController.m in Sources */,
 			);
