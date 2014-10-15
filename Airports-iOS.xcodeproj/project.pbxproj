@@ -15,6 +15,8 @@
 		E86E396819EBF2EB00AEFDE0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E86E396619EBF2EB00AEFDE0 /* LaunchScreen.xib */; };
 		E86E397419EBF2EB00AEFDE0 /* Airports_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E86E397319EBF2EB00AEFDE0 /* Airports_iOSTests.m */; };
 		E86E397E19EBFE5900AEFDE0 /* New Delhi Map.gif in Resources */ = {isa = PBXBuildFile; fileRef = E86E397D19EBFE5900AEFDE0 /* New Delhi Map.gif */; };
+		E8CA3CEB19EE57DD004AD915 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CA3CEA19EE57DD004AD915 /* MapViewController.m */; };
+		E8CA3CED19EE84B0004AD915 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8CA3CEC19EE84B0004AD915 /* MapKit.framework */; };
 		E8F33A9819ED033D005530D2 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F33A9719ED033D005530D2 /* DetailViewController.m */; };
 		E8F33A9B19ED0C35005530D2 /* Airport.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F33A9A19ED0C35005530D2 /* Airport.m */; };
 		E8F33A9E19ED0C76005530D2 /* TemplateIcon2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8F33A9D19ED0C76005530D2 /* TemplateIcon2x.png */; };
@@ -48,6 +50,9 @@
 		E86E397219EBF2EB00AEFDE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E86E397319EBF2EB00AEFDE0 /* Airports_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Airports_iOSTests.m; sourceTree = "<group>"; };
 		E86E397D19EBFE5900AEFDE0 /* New Delhi Map.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "New Delhi Map.gif"; path = "../../../Downloads/New Delhi Map.gif"; sourceTree = "<group>"; };
+		E8CA3CE919EE57DD004AD915 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		E8CA3CEA19EE57DD004AD915 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		E8CA3CEC19EE84B0004AD915 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E8F33A9619ED033D005530D2 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
 		E8F33A9719ED033D005530D2 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
 		E8F33A9A19ED0C35005530D2 /* Airport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Airport.m; path = ../Airport.m; sourceTree = "<group>"; };
@@ -64,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8CA3CED19EE84B0004AD915 /* MapKit.framework in Frameworks */,
 				E8F33AA419ED1954005530D2 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +87,7 @@
 		E86E394819EBF2EB00AEFDE0 = {
 			isa = PBXGroup;
 			children = (
+				E8CA3CEC19EE84B0004AD915 /* MapKit.framework */,
 				E8F33AA319ED1954005530D2 /* libsqlite3.dylib */,
 				E8F33AA919ED29D9005530D2 /* airports2.sqlite */,
 				E86E395319EBF2EB00AEFDE0 /* Airports-iOS */,
@@ -117,6 +124,8 @@
 				E86E396619EBF2EB00AEFDE0 /* LaunchScreen.xib */,
 				E86E395419EBF2EB00AEFDE0 /* Supporting Files */,
 				E8F33A9D19ED0C76005530D2 /* TemplateIcon2x.png */,
+				E8CA3CE919EE57DD004AD915 /* MapViewController.h */,
+				E8CA3CEA19EE57DD004AD915 /* MapViewController.m */,
 			);
 			path = "Airports-iOS";
 			sourceTree = "<group>";
@@ -196,6 +205,11 @@
 				TargetAttributes = {
 					E86E395019EBF2EB00AEFDE0 = {
 						CreatedOnToolsVersion = 6.0.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					E86E396C19EBF2EB00AEFDE0 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -256,6 +270,7 @@
 				E8F33AA119ED0CB3005530D2 /* AirportList.m in Sources */,
 				E86E395719EBF2EB00AEFDE0 /* main.m in Sources */,
 				E8F33A9819ED033D005530D2 /* DetailViewController.m in Sources */,
+				E8CA3CEB19EE57DD004AD915 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

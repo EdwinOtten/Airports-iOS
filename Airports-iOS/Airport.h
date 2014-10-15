@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-
+#import <MapKit/MapKit.h>
 @interface Airport : NSObject
 
 @property (nonatomic, assign)NSInteger id;
@@ -8,6 +8,7 @@
 @property (nonatomic, retain)NSString *name;
 @property (nonatomic, assign)double latitude_deg;
 @property (nonatomic, assign)double longitude_deg;
+@property (nonatomic) CLLocation *location;
 @property (nonatomic, retain)NSString *elevation_ft;
 @property (nonatomic, retain)NSString *continent;
 @property (nonatomic, retain)NSString *iso_country;

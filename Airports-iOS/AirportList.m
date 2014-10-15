@@ -35,6 +35,7 @@
             myAirport.name =                [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 3)];
             myAirport.latitude_deg =        sqlite3_column_double(sqlStatement, 4);
             myAirport.longitude_deg =       sqlite3_column_double(sqlStatement, 5);
+            myAirport.location =            [[CLLocation alloc] initWithLatitude:myAirport.latitude_deg longitude:myAirport.longitude_deg];
             myAirport.elevation_ft =        [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 6)];
             myAirport.continent =           [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 7)];
             myAirport.iso_country =         [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement, 8)];

@@ -5,6 +5,7 @@
 @synthesize ident;
 @synthesize type;
 @synthesize name;
+@synthesize location;
 @synthesize elevation_ft;
 @synthesize continent;
 @synthesize iso_country;

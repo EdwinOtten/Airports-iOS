@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "MapViewController.h"
 #import "Airport.h"
 
 @interface DetailViewController ()
@@ -19,11 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(viewMap)];
+}
+
+- (void)viewMap {
+    [self performSegueWithIdentifier: @"mapViewSegue" sender: self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,6 +90,20 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return NO;
+}
+
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"mapViewSegue"])
+    {
+        // Get reference to the destination view controller
+        MapViewController *vc = [segue destinationViewController];
+        vc.destination = airport.location;
+    }
 }
 
 @end
