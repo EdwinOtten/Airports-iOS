@@ -19,6 +19,7 @@
     [super viewDidLoad];
     _mapView.showsUserLocation = NO;
     _mapView.delegate = self;
+    
     [self updateMap];
 }
 
