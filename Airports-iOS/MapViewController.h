@@ -14,5 +14,6 @@
 <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (nonatomic) CLLocation* destination;
+@property (nonatomic) CLLocation *destinationLocation;
+@property (nonatomic) CLLocation *departureLocation;
 @end

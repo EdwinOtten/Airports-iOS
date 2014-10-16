@@ -25,8 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    AirportList *airportList = [AirportList new];
-    airports = [airportList getMyAirports];
+    airports = [AirportList getMyAirports];
     
     for (Airport *airport in airports) {
         if (!self.objects) {
@@ -60,6 +59,8 @@
         [vc setAirport:airport];
     }
 }
+
+
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

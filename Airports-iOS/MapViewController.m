@@ -9,17 +9,15 @@
 #import "MapViewController.h"
 
 @interface MapViewController ()
-@property CLLocation* userLocation;
 
 @end
 
 @implementation MapViewController
-@synthesize destination;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _mapView.showsUserLocation = YES;
+    _mapView.showsUserLocation = NO;
     _mapView.delegate = self;
     [self updateMap];
 }
@@ -29,20 +27,53 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)mapView:(MKMapView *)mapView
-didUpdateUserLocation:
-(MKUserLocation *)userLocation
-{
-    _userLocation = userLocation.location;
+- (void)updateMap {
+    MKPointAnnotation *departurePoint = [MKPointAnnotation new];
+    [departurePoint setCoordinate:_departureLocation.coordinate];
+    
+    MKPointAnnotation *destinationPoint = [MKPointAnnotation new];
+    [destinationPoint setCoordinate:_destinationLocation.coordinate];
+    
+    [_mapView addAnnotations:@[departurePoint,destinationPoint]];
+    
+    [_mapView showAnnotations: _mapView.annotations animated:YES];
+//    _mapView.camera.altitude = 1.4;
+    
+    CLLocationCoordinate2D coordinates[2] =
+    {_departureLocation.coordinate, _destinationLocation.coordinate};
+    
+    MKPolyline *polyline =
+    [MKPolyline polylineWithCoordinates:coordinates
+                                          count:2];
+    
+    MKGeodesicPolyline *geodesicPolyline =
+    [MKGeodesicPolyline polylineWithCoordinates:coordinates
+                                          count:2];
+    
+    [_mapView addOverlay:polyline];
+    [_mapView addOverlay:geodesicPolyline];
 }
 
-- (void)updateMap {
-//    CLLocationDistance d = [destination distanceFromLocation:_userLocation];
-//    MKCoordinateRegion r = MKCoordinateRegionMakeWithDistance(destination.coordinate, 2*d, 2*d);
-    CLLocationCoordinate2D *user = (__bridge CLLocationCoordinate2D *)([[CLLocation alloc] initWithLatitude:41.784401 longitude:123.496002]);
-    CLLocationDistance d = [destination distanceFromLocation:(__bridge const CLLocation *)(user)];
-    MKCoordinateRegion r = MKCoordinateRegionMakeWithDistance(destination.coordinate, 2*d, 2*d);
-    [_mapView setRegion:r animated:YES];
+#pragma mark - MKMapViewDelegate
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView
+            rendererForOverlay:(id <MKOverlay>)overlay
+{
+    if (![overlay isKindOfClass:[MKPolyline class]]) {
+        return nil;
+    }
+    
+    MKPolylineRenderer *renderer =
+    [[MKPolylineRenderer alloc] initWithPolyline:(MKPolyline *)overlay];
+    renderer.lineWidth = 3.0f;
+    renderer.strokeColor = [UIColor redColor];
+    renderer.alpha = 0.5;
+    
+    if ([overlay isKindOfClass:[MKGeodesicPolyline class]]) {
+        renderer.strokeColor = [UIColor blueColor];
+    }
+    
+    return renderer;
 }
 
 @end

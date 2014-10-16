@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 #import "MapViewController.h"
 #import "Airport.h"
+#import "AirportList.h"
 
 @interface DetailViewController ()
 @property NSMutableArray *cellObjects;
@@ -102,7 +103,9 @@
     {
         // Get reference to the destination view controller
         MapViewController *vc = [segue destinationViewController];
-        vc.destination = airport.location;
+        vc.destinationLocation = airport.location;
+        Airport *schiphol = [AirportList getAirportByICAO:"EHAM"];
+        vc.departureLocation = schiphol.location;
     }
 }
 
