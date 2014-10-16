@@ -104,7 +104,8 @@
         // Get reference to the destination view controller
         MapViewController *vc = [segue destinationViewController];
         vc.destinationLocation = airport.location;
-        Airport *schiphol = [AirportList getAirportByICAO:"EHAM"];
+        AirportList *airportList = [AirportList new];
+        Airport *schiphol = [airportList getAirportByICAO:"EHAM"];
         vc.departureLocation = schiphol.location;
     }
 }

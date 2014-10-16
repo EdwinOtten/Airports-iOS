@@ -30,7 +30,7 @@
 - (void)updateMap {
     MKPointAnnotation *departurePoint = [MKPointAnnotation new];
     [departurePoint setCoordinate:_departureLocation.coordinate];
-    
+
     MKPointAnnotation *destinationPoint = [MKPointAnnotation new];
     [destinationPoint setCoordinate:_destinationLocation.coordinate];
     

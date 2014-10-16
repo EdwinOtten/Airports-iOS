@@ -6,7 +6,8 @@
     sqlite3 *db;
 }
 
-+ (NSMutableArray *) getMyAirports;
-+ (Airport *) getAirportByICAO: (char *) icao;
-
+- (void) updateAirports;
+- (Airport *) getAirportByICAO: (char *) icao;
+@property NSMutableDictionary *airports;
+@property NSMutableArray *sectionTitles;
 @end

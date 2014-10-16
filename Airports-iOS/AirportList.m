@@ -1,13 +1,21 @@
 #import "AirportList.h"
 #import "Airport.h"
 
-@implementation AirportList
 
-+ (NSMutableArray *) getMyAirports{
-    NSMutableArray *airportArray = [[NSMutableArray alloc] init];
+@interface AirportList ()
+
+@end
+
+@implementation AirportList
+@synthesize airports;
+@synthesize sectionTitles;
+
+- (void) updateAirports{
     @try {
-        sqlite3 *db = [self getDB];
-        const char *sql = "SELECT * FROM airports";
+        airports = [[NSMutableDictionary alloc] init];
+        sectionTitles = [[NSMutableArray alloc] init];
+        db = [self getDB];
+        const char *sql = "SELECT * FROM airports WHERE continent = 'EU' ORDER BY name";
         sqlite3_stmt *sqlStatement;
         if(sqlite3_prepare_v2(db, sql, -1, &sqlStatement, NULL) != SQLITE_OK)
         {
@@ -18,22 +26,42 @@
 
         while (sqlite3_step(sqlStatement)==SQLITE_ROW) {
             Airport *myAirport = [self mapStatementToAirport:sqlStatement];
-            [airportArray addObject:myAirport];
+            if (myAirport.name.length < 1) { break; }
+            NSString *mySectionTitle = [myAirport.name substringToIndex:1];
+            
+            if ([airports objectForKey:mySectionTitle] == NULL){
+                NSMutableArray *temp = [[NSMutableArray alloc] init];
+                [airports setObject:temp forKey:mySectionTitle];
+            }
+            
+            NSMutableArray *section = [airports objectForKey:mySectionTitle];
+            [section insertObject:myAirport atIndex:section.count ];
+            airports[mySectionTitle] = section;
+            
+            bool sectionTitleFound = NO;
+            for (NSString *title in sectionTitles) {
+                if ([title isEqualToString:mySectionTitle]) {
+                    sectionTitleFound = YES;
+                }
+            }
+
+            // if the sectiontitle is not known yet
+            if (!sectionTitleFound) {
+                [sectionTitles insertObject:mySectionTitle atIndex:sectionTitles.count ];
+            }
+            
         }
     }
     @catch (NSException *exception) {
         NSLog(@"An exception occured: %@", [exception reason]);
     }
-    @finally {
-        return airportArray;
-    }
     
 }
 
-+ (Airport *) getAirportByICAO: (char *) icao{
+- (Airport *) getAirportByICAO: (char *) icao{
 
     @try {
-        sqlite3 *db = [self getDB];
+        db = [self getDB];
         NSString *select = [NSString stringWithFormat:@"SELECT * FROM airports WHERE ident =  '%s'", icao];
         const char *sql = [select cStringUsingEncoding:NSASCIIStringEncoding];
         sqlite3_stmt *sqlStatement;
@@ -53,9 +81,9 @@
     
 }
 
-+ (sqlite3 *) getDB {
+- (sqlite3 *) getDB {
+    if (self->db == NULL) {
     @try {
-        sqlite3 *db;
         NSFileManager *fileMgr = [NSFileManager defaultManager];
         NSString *dbPath = [[[NSBundle mainBundle] resourcePath ]stringByAppendingPathComponent:@"airports2.sqlite"];
         BOOL success = [fileMgr fileExistsAtPath:dbPath];
@@ -72,9 +100,11 @@
     @catch (NSException *exception) {
         NSLog(@"An exception occured: %@", [exception reason]);
     }
+        
+    }
 }
 
-+ (Airport *) mapStatementToAirport:(sqlite3_stmt *) sqlStatement{
+- (Airport *) mapStatementToAirport:(sqlite3_stmt *) sqlStatement{
     Airport *airport = [Airport new];
     
     airport.id =                  sqlite3_column_int(sqlStatement, 0);
